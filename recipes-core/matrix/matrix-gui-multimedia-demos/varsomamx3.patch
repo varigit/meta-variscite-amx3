@@ -1,0 +1,108 @@
+diff --git a/arm_multimedia_aacdec/runAACDec.sh b/arm_multimedia_aacdec/runAACDec.sh
+index 9bbc66c..5105060 100644
+--- a/arm_multimedia_aacdec/runAACDec.sh
++++ b/arm_multimedia_aacdec/runAACDec.sh
+@@ -17,13 +17,13 @@ else
+ 		amixer cset name='HeadsetL Mixer AudioL1' on
+ 		amixer cset name='HeadsetR Mixer AudioR1' on
+ 		amixer -c 0 set Headset 1+ unmute
+-	elif [ "$machine_type" = "am335x-evm" ]; then
++	elif [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+ 	elif [ "$machine_type" = "omap5-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+         elif [ "$machine_type" = "am57xx-evm" ]; then
+                 amixer cset name='PCM Playback Volume' 127
+-	elif [ "$machine_type" = "am437x-evm" ]; then
++	elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]; then
+ 
+ 		# EPOS uses a different configuration
+ 		# we are running on that board
+diff --git a/arm_multimedia_audiocapture/runAudioCapture.sh b/arm_multimedia_audiocapture/runAudioCapture.sh
+index cd3b55c..0b4ca26 100755
+--- a/arm_multimedia_audiocapture/runAudioCapture.sh
++++ b/arm_multimedia_audiocapture/runAudioCapture.sh
+@@ -27,7 +27,7 @@ else
+         amixer cset name='Analog Left AUXL Capture Switch' 1  > /dev/null
+         amixer cset name='Analog Right AUXR Capture Switch' 1 > /dev/null
+         amixer sset 'Headset' 60%,60% > /dev/null
+-    elif [ "$machine_type" = "am335x-evm" ]; then
++    elif [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
+         amixer cset name='PCM Playback Volume' 80%,80% > /dev/null
+         amixer cset name='PGA Capture Volume' 65%,65% > /dev/null
+         amixer sset 'Right PGA Mixer Line1R' on > /dev/null
+diff --git a/arm_multimedia_h264dec/runH264Dec.sh b/arm_multimedia_h264dec/runH264Dec.sh
+index b45c0eb..309ef8f 100644
+--- a/arm_multimedia_h264dec/runH264Dec.sh
++++ b/arm_multimedia_h264dec/runH264Dec.sh
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+ machine_type="`cat /etc/hostname`"
+-if [ "$machine_type" = "am335x-evm" ]; then
++if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
+ 	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+ 	if [ "$resolution" = "480x272" ]; then
+ 		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.264"
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
+-elif [ "$machine_type" = "am437x-evm" ]
++elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
+ then
+         resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+         if [ "$resolution" = "480x272" ]; then
+diff --git a/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+index b42bedb..9489d17 100644
+--- a/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
++++ b/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+@@ -6,7 +6,7 @@ if [ ! -f $amixer_find ]; then
+         echo "Please connect audio output and install ALSA soundcard driver"
+ else
+ 	machine_type="`cat /etc/hostname`"
+-	if [ "$machine_type" = "am335x-evm" ]; then
++	if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
+ 		resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+ 		 if [ "$resolution" = "480x272" ]; then
+ 			filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
+@@ -20,7 +20,7 @@ else
+     elif [ "$machine_type" = "omap5-evm" ]
+     then
+         filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-    elif [ "$machine_type" = "am437x-evm" ]
++    elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
+     then
+             resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+             if [ "$resolution" = "480x272" ]; then
+@@ -52,7 +52,7 @@ else
+ 		amixer cset name='PCM Playback Volume' 127
+     elif [ "$machine_type" = "omap5-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+-    elif [ "$machine_type" = "am437x-evm" ]; then
++    elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]; then
+ 
+ 		# EPOS uses a different configuration so check if
+ 		# we are running on that board
+diff --git a/arm_multimedia_mpeg4dec/runMpeg4Dec.sh b/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+index 2b7b3a6..c5860b6 100644
+--- a/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
++++ b/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+ machine_type="`cat /etc/hostname`"
+-if [ "$machine_type" = "am335x-evm" ]; then
++if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
+ 	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+ 	if [ "$resolution" = "480x272" ]; then
+ 		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.m4v"
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
+-elif [ "$machine_type" = "am437x-evm" ]
++elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
+ then
+     resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+     if [ "$resolution" = "480x272" ]; then
