@@ -1,0 +1,10 @@
+# remove biggerpackages to save space on 256 MB Nand
+
+DEVTOOLS_remove_varsomam33 = "\
+    git \
+    packagegroup-core-buildessential \
+"
+
+UTILS_remove_varsomam33 = " \
+    valgrind \
+"
