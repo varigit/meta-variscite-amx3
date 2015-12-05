@@ -45,6 +45,7 @@ KERNEL_DEVICETREE_k2hk-evm = "k2hk-evm.dtb"
 KERNEL_DEVICETREE_k2e-evm = "k2e-evm.dtb"
 KERNEL_DEVICETREE_k2l-evm = "k2l-evm.dtb"
 KERNEL_DEVICETREE_varsomam33 = "var-som-am33.dtb"
+KERNEL_DEVICETREE_varsomam43 = "var-som-am43.dtb var-som-am43-eth1.dtb"
 
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
@@ -54,7 +55,7 @@ S = "${WORKDIR}/git"
 
 BRANCH = "var-som-AMx3_sdk-linux-02.00.00"
 
-SRCREV = "dedee54378710ebabbdb0514ebe38e50ec328f1b"
+SRCREV = "6c66679623af1723a556cb12cdfd0f7ef723c397"
 PV = "4.1.6+git${SRCPV}"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
