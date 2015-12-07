@@ -55,7 +55,7 @@ S = "${WORKDIR}/git"
 
 BRANCH = "var-som-AMx3_sdk-linux-02.00.00"
 
-SRCREV = "6c66679623af1723a556cb12cdfd0f7ef723c397"
+SRCREV = "1d49dc9160a13c65ec3cf0db93350e54dab8ed57"
 PV = "4.1.6+git${SRCPV}"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
