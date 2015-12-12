@@ -40,19 +40,10 @@ index b45c0eb..309ef8f 100644
  
  machine_type="`cat /etc/hostname`"
 -if [ "$machine_type" = "am335x-evm" ]; then
-+if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
++if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" -o "$machine_type" = "varsomam43" ]; then
  	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
  	if [ "$resolution" = "480x272" ]; then
  		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.264"
-@@ -15,7 +15,7 @@ then
- elif [ "$machine_type" = "omap5-evm" ]
- then
-     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
--elif [ "$machine_type" = "am437x-evm" ]
-+elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
- then
-         resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-         if [ "$resolution" = "480x272" ]; then
 diff --git a/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
 index b42bedb..9489d17 100644
 --- a/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
@@ -62,19 +53,10 @@ index b42bedb..9489d17 100644
  else
  	machine_type="`cat /etc/hostname`"
 -	if [ "$machine_type" = "am335x-evm" ]; then
-+	if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
++	if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" -o "$machine_type" = "varsomam43" ]; then
  		resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
  		 if [ "$resolution" = "480x272" ]; then
  			filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
-@@ -20,7 +20,7 @@ else
-     elif [ "$machine_type" = "omap5-evm" ]
-     then
-         filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
--    elif [ "$machine_type" = "am437x-evm" ]
-+    elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
-     then
-             resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-             if [ "$resolution" = "480x272" ]; then
 @@ -52,7 +52,7 @@ else
  		amixer cset name='PCM Playback Volume' 127
      elif [ "$machine_type" = "omap5-evm" ]; then
@@ -93,16 +75,7 @@ index 2b7b3a6..c5860b6 100644
  
  machine_type="`cat /etc/hostname`"
 -if [ "$machine_type" = "am335x-evm" ]; then
-+if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" ]; then
++if [ "$machine_type" = "am335x-evm" -o "$machine_type" = "varsomam33" -o "$machine_type" = "varsomam43" ]; then
  	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
  	if [ "$resolution" = "480x272" ]; then
  		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.m4v"
-@@ -15,7 +15,7 @@ then
- elif [ "$machine_type" = "omap5-evm" ]
- then
-     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
--elif [ "$machine_type" = "am437x-evm" ]
-+elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]
- then
-     resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-     if [ "$resolution" = "480x272" ]; then
