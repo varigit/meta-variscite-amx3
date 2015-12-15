@@ -7,13 +7,13 @@ OS=TISDK
 MLO_IMAGE=MLO
 UBOOT_IMAGE=u-boot.img
 KERNEL_IMAGE=zImage
-ROOTFS_IMAGE=rootfs-var-som-am33.ubi.img
+ROOTFS_IMAGE=rootfs-var-som-amx3.ubi.img
 
 install_bootloader()
 {
-        if [ ! -f $MEDIA/$OS/$MLO_IMAGE ]
+        if [ ! -f $MEDIA/$OS/nand/$MLO_IMAGE ]
         then
-                echo "\"$MEDIA/$OS/$MLO_IMAGE\"" does not exist! exit.
+                echo "\"$MEDIA/$OS/nand/$MLO_IMAGE\"" does not exist! exit.
                 exit 1
         fi
         echo "Installing MLO ..."
@@ -22,24 +22,23 @@ install_bootloader()
         flash_erase /dev/mtd2 0 0 > /dev/null
         flash_erase /dev/mtd3 0 0 > /dev/null
         flash_erase /dev/mtd4 0 0 > /dev/null
-        nandwrite -p /dev/mtd0 $MEDIA/$OS/$MLO_IMAGE > /dev/null
-        nandwrite -p /dev/mtd1 $MEDIA/$OS/$MLO_IMAGE > /dev/null
-        nandwrite -p /dev/mtd2 $MEDIA/$OS/$MLO_IMAGE > /dev/null
-        nandwrite -p /dev/mtd3 $MEDIA/$OS/$MLO_IMAGE > /dev/null
+        nandwrite -p /dev/mtd0 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
+        nandwrite -p /dev/mtd1 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
+        nandwrite -p /dev/mtd2 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
+        nandwrite -p /dev/mtd3 $MEDIA/$OS/nand/$MLO_IMAGE > /dev/null
 
-        #nandwrite -p /dev/mtd4 $MEDIA/$OS/am335x-som.dtb > /dev/null
-	nandwrite -p /dev/mtd4 $MEDIA/$OS/zImage-var-som-am33.dtb > /dev/null
+        nandwrite -p /dev/mtd4 $MEDIA/$OS/zImage-var-som-amx3.dtb > /dev/null
 
-        if [ ! -f $MEDIA/$OS/$UBOOT_IMAGE ]
+        if [ ! -f $MEDIA/$OS/nand/$UBOOT_IMAGE ]
         then
-                echo "\"$MEDIA/$OS/$UBOOT_IMAGE\"" does not exist! exit.
+                echo "\"$MEDIA/$OS/nand/$UBOOT_IMAGE\"" does not exist! exit.
                 exit 1
         fi
         echo "Installing U-Boot ..."
         flash_erase /dev/mtd5 0 0 > /dev/null
         flash_erase /dev/mtd6 0 0 > /dev/null
         flash_erase /dev/mtd7 0 0 > /dev/null
-        nandwrite -p /dev/mtd5 $MEDIA/$OS/$UBOOT_IMAGE > /dev/null
+        nandwrite -p /dev/mtd5 $MEDIA/$OS/nand/$UBOOT_IMAGE > /dev/null
 }
 
 install_kernel()
@@ -71,7 +70,7 @@ usage()
         cat << EOF
                 usage: $0 options
 
-                This script install Linux/Android binaries in VAR-SOM-AM33 NAND.
+                This script install Linux/Android binaries in VAR-SOM-AMX3 NAND.
 
                 OPTIONS:
                 -h                   Show this message
@@ -108,7 +107,7 @@ then
         exit 1
 fi
 
-echo "*** VAR-SOM-AM33 NAND RECOVERY ***"
+echo "*** VAR-SOM-AMX3 NAND RECOVERY ***"
 echo "Installing $OS on NAND ..."
 
 install_bootloader

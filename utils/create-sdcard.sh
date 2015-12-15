@@ -77,7 +77,7 @@ ARAGO_IMAGES_DIR="$ARAGO_TISDK_DIR/build/arago-tmp-external-linaro-toolchain/dep
 VAR_UTILS_DIR="$ARAGO_TISDK_DIR/sources/meta-variscite-amx3/utils"
 
 # Recovery file names
-RECOVERY_UBIFS_FILENAME=rootfs-var-som-am33.ubi.img
+RECOVERY_UBIFS_FILENAME=rootfs-var-som-amx3.ubi.img
 
 AMIROOT=`whoami | awk {'print $1'}`
 if [ "$AMIROOT" != "root" ] ; then
@@ -1041,7 +1041,7 @@ Copying boot partition
 EOM
 
 # Path for recovery partition
-mkdir -p $ROOTFSUSERFILEPATH/opt/TISDK
+mkdir -p $ROOTFSUSERFILEPATH/opt/TISDK/nand
 
 if [ $BOOTPATHOPTION -eq 1 ] ; then
 
@@ -1049,7 +1049,7 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
 	#copy boot files out of board support
 	if [ "$MLO" != "" ] ; then
 		#cp $BOOTFILEPATH/$MLO $PATH_TO_SDBOOT/MLO
-		cp $BOOTFILEPATH/MLO $ROOTFSUSERFILEPATH/opt/TISDK
+		cp $BOOTFILEPATH/MLO $ROOTFSUSERFILEPATH/opt/TISDK/nand
 		cp $VAR_UTILS_DIR/u-boot-sd/MLO $PATH_TO_SDBOOT/
 		echo "MLO copied"
 	else
@@ -1062,12 +1062,12 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
 
 	if [ "$BOOTIMG" != "" ] ; then
 		#cp $BOOTFILEPATH/$BOOTIMG $PATH_TO_SDBOOT/u-boot.img
-		cp $BOOTFILEPATH/u-boot.img $ROOTFSUSERFILEPATH/opt/TISDK
+		cp $BOOTFILEPATH/u-boot.img $ROOTFSUSERFILEPATH/opt/TISDK/nand
 		cp $VAR_UTILS_DIR/u-boot-sd/u-boot.img $PATH_TO_SDBOOT/
 		echo "u-boot.img copied"
 	elif [ "$BOOTBIN" != "" ] ; then
 		#cp $BOOTFILEPATH/$BOOTBIN $PATH_TO_SDBOOT/u-boot.bin
-		cp $BOOTFILEPATH/u-boot.bin $ROOTFSUSERFILEPATH/opt/TISDK
+		cp $BOOTFILEPATH/u-boot.bin $ROOTFSUSERFILEPATH/opt/TISDK/nand
 		cp $VAR_UTILS_DIR/u-boot-sd/u-boot.img $PATH_TO_SDBOOT/
 		echo "u-boot.bin copied"
 	else
@@ -1082,7 +1082,7 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
 	fi
 
 	# Copying DTB (device tree) for recovery to rootfs
-	cp -f $BOOTFILEPATH/zImage-var-som-am33.dtb $ROOTFSUSERFILEPATH/opt/TISDK
+	cp -f $BOOTFILEPATH/zImage-var-som-am33.dtb $ROOTFSUSERFILEPATH/opt/TISDK/zImage-var-som-amx3.dtb
 	echo "zImage-var-som-am33.dtb copied"
 
 	# Copying zImage for recovery to rootfs

@@ -36,4 +36,4 @@ mv $ROOTFS_DIR/usr/share/ti_tmp $ROOTFS_DIR/usr/share/ti
 #For 512MB NAND: # sudo mkfs.ubifs -r $ROOTFS_DIR -o system_ubifs.img -m 2048 -e 126976 -c 4145
 
 mkfs.ubifs -r $ROOTFS_DIR -o system_ubifs.img -m 2048 -e 126976 -c 1960
-ubinize -o ${UBI_DIR}/rootfs-var-som-am33.ubi.img -m 2048 -p 128KiB -s 2048 -O 2048 ubinize.cfg
+ubinize -o ${UBI_DIR}/rootfs-var-som-amx3.ubi.img -m 2048 -p 128KiB -s 2048 -O 2048 ubinize.cfg
