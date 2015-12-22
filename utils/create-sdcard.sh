@@ -1096,7 +1096,7 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
 
 	# tisdk-rootfs-image recovery
 	echo "tisdk-rootfs-image recovery..."
-	cp tisdk-rootfs-image/$RECOVERY_UBIFS_FILENAME $ROOTFSUSERFILEPATH/opt/TISDK
+	cp  $BOOTFILEPATH/$RECOVERY_UBIFS_FILENAME $ROOTFSUSERFILEPATH/opt/TISDK
 
 elif [ $BOOTPATHOPTION -eq 2  ] ; then
 	untar_progress $BOOTUSERFILEPATH $PATH_TO_TMP_DIR
