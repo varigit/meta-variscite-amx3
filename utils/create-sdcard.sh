@@ -77,7 +77,8 @@ ARAGO_IMAGES_DIR="$ARAGO_TISDK_DIR/build/arago-tmp-external-linaro-toolchain/dep
 VAR_UTILS_DIR="$ARAGO_TISDK_DIR/sources/meta-variscite-amx3/utils"
 
 # Recovery file names
-RECOVERY_UBIFS_FILENAME=rootfs-var-som-amx3.ubi.img
+RECOVERY_UBIFS_FILENAME=tisdk-rootfs-image-varsomam33.ubi
+RECOVERY_ROOTFS_TARGZ_FILENAME=tisdk-rootfs-image-varsomam33.tar.gz
 
 AMIROOT=`whoami | awk {'print $1'}`
 if [ "$AMIROOT" != "root" ] ; then
@@ -1096,7 +1097,8 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
 
 	# tisdk-rootfs-image recovery
 	echo "tisdk-rootfs-image recovery..."
-	cp tisdk-rootfs-image/$RECOVERY_UBIFS_FILENAME $ROOTFSUSERFILEPATH/opt/TISDK
+	cp $ARAGO_IMAGES_DIR/$RECOVERY_UBIFS_FILENAME $ROOTFSUSERFILEPATH/opt/TISDK/rootfs-var-som-amx3.ubi.img
+	cp $ARAGO_IMAGES_DIR/$RECOVERY_ROOTFS_TARGZ_FILENAME $ROOTFSUSERFILEPATH/opt/TISDK/tisdk-rootfs-image-varsomamx3.tar.gz
 
 elif [ $BOOTPATHOPTION -eq 2  ] ; then
 	untar_progress $BOOTUSERFILEPATH $PATH_TO_TMP_DIR
