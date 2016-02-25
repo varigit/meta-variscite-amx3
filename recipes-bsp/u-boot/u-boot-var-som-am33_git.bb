@@ -10,7 +10,7 @@ PR = "+gitr${SRCPV}"
 SRC_URI = "git://github.com/varigit/u-boot-VAR-SOM-AM33-SDK7.git;protocol=git;branch=${BRANCH}"
 
 # Corresponds to tag var-som-am33 u-boot
-SRCREV = "adf9a1402056ae7cb3b61c3f783a0268ea23435b"
+SRCREV = "3bd2c6db1966a804aa6a0b3567117929bb45db77"
 
 SPL_BINARY = "MLO"
 SPL_UART_BINARY = "u-boot-spl.bin"
