@@ -2,8 +2,8 @@
 # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
 
 bitbake,git://git.openembedded.org/bitbake,1.30,26379ff2b686313c82af87a3a35b47adbc0183be,layers=
-meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,1686d851985872f34ca3a2c30d4a0726a20a5c99,layers=
 meta-variscite-amx3,git://github.com/varigit/meta-variscite-amx3.git,krogoth,HEAD,layers=
+meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,1686d851985872f34ca3a2c30d4a0726a20a5c99,layers=
 meta-arago,git://arago-project.org/git/meta-arago.git,ti2016.01,36598b78a6d9fbe442f93111f64d3413c04418a8,layers=meta-arago-distro:meta-arago-extras
 meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,d715f2c1d340fa38f8a9860acc73de5e14a38b75,layers=
 meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,247b1267bbe95719cd4877d2d3cfbaf2a2f4865a,layers=meta-networking:meta-ruby:meta-python:meta-oe
