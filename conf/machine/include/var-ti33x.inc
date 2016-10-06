@@ -21,8 +21,11 @@ MACHINE_KERNEL_PR = "r22"
 
 # Default providers, may need to override for specific machines
 PREFERRED_PROVIDER_virtual/kernel = "linux-ti-variscite"
+PREFERRED_PROVIDER_virtual/kernel_varsomam33 = "linux-ti-variscite"
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-var-som-am33"
+PREFERRED_PROVIDER_virtual/bootloader_varsomam33 = "u-boot-var-som-am33"
 PREFERRED_PROVIDER_u-boot = "u-boot-var-som-am33"
+PREFERRED_PROVIDER_u-boot_varsomam33 = "u-boot-var-som-am33"
 
 KERNEL_IMAGETYPE = "zImage"
 
