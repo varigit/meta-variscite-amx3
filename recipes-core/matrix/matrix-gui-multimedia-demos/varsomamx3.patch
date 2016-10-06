@@ -2,7 +2,7 @@ diff --git a/arm_multimedia_aacdec/runAACDec.sh b/arm_multimedia_aacdec/runAACDe
 index 9bbc66c..5105060 100644
 --- a/arm_multimedia_aacdec/runAACDec.sh
 +++ b/arm_multimedia_aacdec/runAACDec.sh
-@@ -17,13 +17,13 @@ else
+@@ -18,7 +18,7 @@
  		amixer cset name='HeadsetL Mixer AudioL1' on
  		amixer cset name='HeadsetR Mixer AudioR1' on
  		amixer -c 0 set Headset 1+ unmute
@@ -11,8 +11,10 @@ index 9bbc66c..5105060 100644
  		amixer cset name='PCM Playback Volume' 127
  	elif [ "$machine_type" = "omap5-evm" ]; then
  		amixer cset name='PCM Playback Volume' 127
-         elif [ "$machine_type" = "am57xx-evm" ]; then
-                 amixer cset name='PCM Playback Volume' 127
+@@ -46,7 +46,7 @@
+                   fi
+                   AUDIO_SINK="$AUDIO_SINK device=hw:$AUDIO_CARD,0"
+                 fi
 -	elif [ "$machine_type" = "am437x-evm" ]; then
 +	elif [ "$machine_type" = "am437x-evm" -o "$machine_type" = "varsomam43" ]; then
  
