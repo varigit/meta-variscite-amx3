@@ -14,15 +14,18 @@ XSERVER = "xserver-xorg \
            xf86-input-keyboard"
 
 # Default to external video, change to smallscreen for built-in LCD
-GUI_MACHINE_CLASS = "bigscreen"
+MACHINE_GUI_CLASS = "bigscreen"
 
 # Increase this everytime you change something in the kernel
 MACHINE_KERNEL_PR = "r3"
 
 # Default providers, may need to override for specific machines
 PREFERRED_PROVIDER_virtual/kernel = "linux-ti-variscite"
+PREFERRED_PROVIDER_virtual/kernel_varsomam43 = "linux-ti-variscite"
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-var-som-am43"
+PREFERRED_PROVIDER_virtual/bootloader_varsomam43 = "u-boot-var-som-am43"
 PREFERRED_PROVIDER_u-boot = "u-boot-var-som-am43"
+PREFERRED_PROVIDER_u-boot_varsomam43 = "u-boot-var-som-am43"
 
 KERNEL_IMAGETYPE = "zImage"
 
