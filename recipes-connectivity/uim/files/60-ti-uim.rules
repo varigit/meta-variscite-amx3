@@ -1,0 +1,2 @@
+ACTION=="add", ENV{MODALIAS}=="of:N*T*Ckim*", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ti-uim.service"
+
