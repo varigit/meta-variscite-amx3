@@ -573,36 +573,45 @@ cat << EOM
 ################################################################################
 
 EOM
+
+umount ${DRIVE}${P}1 >& /dev/null
+umount ${DRIVE}${P}2 >& /dev/null
+
 dd if=/dev/zero of=$DRIVE bs=1024 count=1024
 
 SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
 
 echo DISK SIZE - $SIZE bytes
 
-CYLINDERS=`echo $SIZE/255/63/512 | bc`
-
-sfdisk -D -H 255 -S 63 -C $CYLINDERS $DRIVE << EOF
-,9,0x0C,*
-10,,,-
+# 2 partitions: FAT32 (70MB) and Linux ext3 (remaining space)
+sfdisk --force $DRIVE << EOF
+,70Mib,0x0C,*
+,,,-
 EOF
+
+sync
+sync
 
 cat << EOM
 
 ################################################################################
 
-		Partitioning Boot
+		Formatting Boot
 
 ################################################################################
 EOM
 	mkfs.vfat -F 32 -n "boot" ${DRIVE}${P}1
+	sync
+	sync
 cat << EOM
 
 ################################################################################
 
-		Partitioning rootfs
+		Formatting rootfs
 
 ################################################################################
 EOM
+	dd if=/dev/zero of=${DRIVE}${P}2 bs=128K count=1
 	mkfs.ext3 -L "rootfs" ${DRIVE}${P}2
 	sync
 	sync
