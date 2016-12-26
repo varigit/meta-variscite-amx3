@@ -583,10 +583,10 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
 
 echo DISK SIZE - $SIZE bytes
 
-# 2 partitions: FAT32 (70MB) and Linux ext3 (remaining space)
-sfdisk --force $DRIVE << EOF
-,70Mib,0x0C,*
-,,,-
+CYLINDERS=`echo $SIZE/255/63/512 | bc`
+sfdisk -D -H 255 -S 63 -C $CYLINDERS $DRIVE << EOF
+,9,0x0C,*
+10,,,-
 EOF
 
 sync
@@ -617,7 +617,6 @@ EOM
 	sync
 	INSTALLSTARTHERE=n
 fi
-
 
 
 #Break between partitioning and installing file system
@@ -661,20 +660,20 @@ then
 fi
 
 #Add directories for images
-export START_DIR=$PWD
-mkdir $START_DIR/tmp
-export PATH_TO_SDBOOT=boot
-export PATH_TO_SDROOTFS=rootfs
-export PATH_TO_TMP_DIR=$START_DIR/tmp
+export START_DIR=/tmp
+export PATH_TO_SDBOOT=$START_DIR/boot.$$
+export PATH_TO_SDROOTFS=$START_DIR/rootfs.$$
+export PATH_TO_TMP_DIR=$START_DIR/tmp.$$
 
 
 echo " "
 echo "Mount the partitions "
 mkdir $PATH_TO_SDBOOT
 mkdir $PATH_TO_SDROOTFS
+mkdir $PATH_TO_TMP_DIR
 
-sudo mount -t vfat ${DRIVE}${P}1 boot/
-sudo mount -t ext3 ${DRIVE}${P}2 rootfs/
+sudo mount -t vfat ${DRIVE}${P}1 $PATH_TO_SDBOOT
+sudo mount -t ext3 ${DRIVE}${P}2 $PATH_TO_SDROOTFS
 
 
 
