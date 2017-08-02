@@ -520,13 +520,11 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
 
 echo DISK SIZE - $SIZE bytes
 
-CYLINDERS=`echo $SIZE/255/63/512 | bc`
-
-sfdisk -D -H 255 -S 63 -C $CYLINDERS $DRIVE << EOF
-,9,0x0C,*
-10,300,,-
-310,,,-
-EOF
+parted -s $DRIVE mklabel msdos
+parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
+parted -s $DRIVE set 1 boot on
+parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
+parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
 
 cat << EOM
 
@@ -583,11 +581,10 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
 
 echo DISK SIZE - $SIZE bytes
 
-CYLINDERS=`echo $SIZE/255/63/512 | bc`
-sfdisk -D -H 255 -S 63 -C $CYLINDERS $DRIVE << EOF
-,9,0x0C,*
-10,,,-
-EOF
+parted -s $DRIVE mklabel msdos
+parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
+parted -s $DRIVE set 1 boot on
+parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
 
 sync
 sync
