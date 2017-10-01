@@ -3,7 +3,7 @@ LIC_FILES_CHKSUM = "file://wl18xx/LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
 PV = "R8.7_SP2"
 PR = "r0"
 
-SRCREV_wl18xx = "3bad7e76e820869f3a276bf02617c17096e28321"
+SRCREV_wl18xx = "c0a99bffe1364fb5b31fca6fbf5bbb4460b971d4"
 BRANCH_wl18xx = "master"
 
 SRCREV_wl12xx = "df40d15d6ad617e72ce7ea00b91d9117d92dcccc"
@@ -12,7 +12,7 @@ BRANCH_wl12xx = "master"
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI = " \
-	git://github.com/varigit/ti-wl18xx-fw.git;protocol=http;branch=${BRANCH_wl18xx};name=wl18xx;destsuffix=wl18xx \
+	git://git.ti.com/wilink8-wlan/wl18xx_fw.git;protocol=git;;branch=${BRANCH_wl18xx};name=wl18xx;destsuffix=wl18xx \
         git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git;protocol=git;branch=${BRANCH_wl12xx};name=wl12xx;destsuffix=wl12xx \
 	file://wl1271-nvs.bin \
 "
