@@ -1,9 +1,9 @@
 LIC_FILES_CHKSUM = "file://wl18xx/LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
 
-PV = "R8.7_SP2"
+PV = "R8.7_SP3"
 PR = "r0"
 
-SRCREV_wl18xx = "c0a99bffe1364fb5b31fca6fbf5bbb4460b971d4"
+SRCREV_wl18xx = "f659be25473e4bde8dc790bff703ecacde6e21da"
 BRANCH_wl18xx = "master"
 
 SRCREV_wl12xx = "df40d15d6ad617e72ce7ea00b91d9117d92dcccc"
